@@ -1,0 +1,105 @@
+if [[ $- != *i* ]] ; then
+  return
+fi
+use_color=false
+safe_term=${TERM//[^[:alnum:]]/?}
+match_lhs=""
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+[[ -z ${match_lhs}    ]] \
+  && type -P dircolors >/dev/null \
+  && match_lhs=$(dircolors --print-database)
+[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+if ${use_color} ; then
+  if type -P dircolors >/dev/null ; then
+      if [[ -f ~/.dir_colors ]] ; then
+          eval $(dircolors -b ~/.dir_colors)
+      elif [[ -f /etc/DIR_COLORS ]] ; then
+          eval $(dircolors -b /etc/DIR_COLORS)
+      fi
+  fi
+  CLICOLOR="YES";    export CLICOLOR
+  LSCOLORS="ExGxFxdxCxDxDxhbadExEx";    export LSCOLORS
+else
+  if [[ ${EUID} == 0 ]] ; then
+      # show root@ when we don't have colors
+      PS1='\u@\h \W \$ '
+  else
+      PS1='\u@\h \w \$ '
+  fi
+fi
+unset use_color safe_term match_lhs
+
+alias battery='upsc ups@localhost'
+alias ups='upsc ups@localhost'
+alias ll='ls -lahG'
+alias la='ls -AG'
+alias l='ls -CFG'
+alias temp='sysctl -a | grep temperature |sed -e 1b -e '"'"'$!d'"'"' |awk '"'"'{print $2}'"'"' '
+alias temps='while [ 1 -lt 2 ]; do clear; date; echo ------------------------------------; eval sysctl -a | grep temperature |awk '"'"'{print $2}'"'"'; sleep 1; done'
+alias dirsize='du -hsx .[^.]* * | sort -rh | head -20'
+alias bounceall='for i in $(echo "iptables apf cpanel crond exim dovecot deluge courier-imap courier-authlib pure-ftpd named httpd mysql csf nginx php-fpm openfire openvpn murmur mysql-server tor minidlnad ipfw csf plexmediaserver sonarr radarr inspircd mattermostd" | tr " " "\n"); do service $i restart; done'
+alias bouncephp='/scripts/restartsrv_apache_php_fpm'
+alias speedtest='curl -s https://tbpchan.cz/speedtest.py | python -'
+alias youtube='youtube-dl -wx --audio-format mp3 --output "%(title)s.%(ext)s" --audio-quality 0'
+alias youtube-playlist='youtube-dl -i -f mp4 -x --audio-format mp3 --output "%(title)s.%(ext)s"  --audio-quality 0 --yes-playlist '
+alias testemail='declare -a array=("postmaster@gmail.com" "postmaster@yahoo.com" "postmaster@hotmail.com" "postmaster@outlook.com" "postmaster@aol.com");dt=$(date '+%Y-%m-%dT%H:%M:%S:%:z');mkdir -v ${PWD}/${dt};for d in ${array[@]};do echo -e "testmail\n.\n"|DEAD=${dt}/${d//*@}.dead mail -s "Test email ${dt}" -v ${d} > ${dt}/${d//*@} 2>&1 & done'
+alias fetchip='curl -4  ifconfig.co'
+alias curls='curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"'
+alias locatebackup='bash <(curl -sA sup https://tbpchan.cz/diskusage.sh)'
+alias spotify='spotify-dl --dl youtube --track '
+alias serverinfo='curl -s https://tbpchan.cz/serverinfo.sh | bash -'
+alias netstat-count="netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head"
+alias apachelog='tail -50 /usr/local/apache/logs/error_log'
+alias tailapachelog='tail -f /usr/local/apache/logs/error_log | grep 216.54.31.82'
+alias accesslog='cat /usr/local/cpanel/logs/access_log'
+alias eximlog='cat /var/log/exim_mainlog'
+alias ffmpeginstall='wget https://raw.githubusercontent.com/q3aql/ffmpeg-install/master/ffmpeg-install && chmod a+x ffmpeg-install && ./ffmpeg-install --install release'
+alias rebuildapache='/scripts/rebuildhttpdconf'
+alias rebuildnginx='ngxconf -Rrd --force && ngxutil -Xu'
+alias nlploop='rm -f ~/nlplog; touch ~/nlplog; for i in $(command ls /var/cpanel/users|xargs);do printf "[+] Scan of user ${i}:\n%s\n\n" "$(nlp ${i})" >> ~/nlplog; done'
+alias cpphpini='cp /usr/local/lib/php.ini ./'
+alias distiller='/usr/local/cpanel/bin/apache_conf_distiller --update'
+alias vpsshellscan='shellscan -u $(ls -p /var/cpanel/users | grep -v /  | grep -v system| tr "\n" " ") -a off --mail docs@inmotionhosting.com'
+alias shellscaninstall='yum -y install imh-shellscan; /usr/bin/shellscan --update --freshclam -u $(\ls /var/cpanel/users | grep -v system) -n'
+alias topprocess='/usr/local/cpanel/bin/dcpumonview'
+alias rebuildfpm='/scripts/php_fpm_config --rebuild'
+alias fixdbs='mysqlcheck -rA && mysqlcheck -oA'
+alias atop='/opt/dedrads/extras/apache-top.py'
+alias pkgserver='command ls /var/cpanel/users|command grep -v 'system'|xargs -n1 pkgacct'
+alias distro='rpm --query centos-release'
+alias sqlwatch='watch -n3 "uptime;mysqladmin status;mysqladmin pr"'
+alias psg='/bin/ps aux | grep -i'
+alias phpsearch='echo "Search local php.ini :"; read as; php -i |grep $as'
+alias psg='/bin/ps aux | grep -i'
+alias phpsearch='echo "Search local php.ini :"; read as; php -i |grep $as'
+alias apachelog='tail -50 /usr/local/apache/logs/error_log'
+alias tailapachelog='tail -f /usr/local/apache/logs/error_log | grep 216.54.31.82'
+alias accesslog='cat /usr/local/cpanel/logs/access_log'
+alias eximlog='cat /var/log/exim_mainlog'
+alias ffmpeginstall='wget https://raw.githubusercontent.com/q3aql/ffmpeg-install/master/ffmpeg-install && chmod a+x ffmpeg-install && ./ffmpeg-install --install release'
+alias rblcheck='curl -s https://tbpchan.cz/rblcheck.a | bash -'
+alias att_delist='curl -s https://tbpchan.cz/att_delist.a | bash -'
+alias superhelp="curl https://tbpchan.cz/bashrc.a"
+alias palemoon-update='curl -s https://tbpchan.cz/palemoon-update.a'
+alias superparallel='curl -s https://tbpchan.cz/superparallel.a'
+alias geoip='read -ep "What is the IP?" IP; curl https://freegeoip.app/csv/'
+HISTSIZE=4000000
+HISTFILESIZE=4000000
+HISTTIMEFORMAT="(%m/%d/%y) %T "
+export HISTTIMEFORMAT HISTSIZE
+bind '"\e[1~": beginning-of-line'
+bind '"\e[4~": end-of-line'
+bind '"\e[3~": delete-char'
+bind '"\e[1;5C": forward-word'
+bind '"\e[1;5D": backward-word'
+export EDITOR="nano"
+export VISUAL="nano"
+PATH=$PATH:/opt/dedrads:/usr/local/cpanel/scripts:/usr/local/cpanel/bin:/opt/tier1adv/bin:/opt/tier2c:/opt/sharedrads:/scripts:~/prog:/usr/local/go/bin;
+neofetch
+#Escape ' in an alias - '"'"'THING'"'"'
+if ((${EUID:-0} || "$(id -u)")); then
+                PS1="\n\[\e[30;1m\](\[\e[94;1m\]\u\[\e[90;1m\]@\[\e[31;1m\]\h\[\e[30;1m\])->\n\[\e[30;1m\](\[\e[33;1m\]\w\[\e[30;1m\]):λ \[\e[32;0m\]"
+        else
+                PS1="\n\[\e[30;1m\](\[\e[31;1m\]\u\[\e[90;1m\]@\[\e[31;1m\]\h\[\e[30;1m\])->\n\[\e[30;1m\](\[\e[33;1m\]\w\[\e[30;1m\]):λ \[\e[32;0m\]"
+fi
