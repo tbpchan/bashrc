@@ -40,12 +40,12 @@ alias temps='while [ 1 -lt 2 ]; do clear; date; echo ---------------------------
 alias dirsize='du -hsx .[^.]* * | sort -rh | head -20'
 alias bounceall='for i in $(echo "iptables apf cpanel crond exim dovecot deluge courier-imap courier-authlib pure-ftpd named httpd mysql csf nginx php-fpm openfire openvpn murmur mysql-server tor minidlnad ipfw csf plexmediaserver sonarr radarr inspircd mattermostd" | tr " " "\n"); do service $i restart; done'
 alias bouncephp='/scripts/restartsrv_apache_php_fpm'
-alias speedtest='curl -s https://tbpchan.cz/speedtest.py | python -'
+alias speedtest='curl -s https://raw.githubusercontent.com/imhtech/speedtest/master/speedtest.py | python -'
 alias youtube='youtube-dl -wx --audio-format mp3 --output "%(title)s.%(ext)s" --audio-quality 0'
 alias youtube-playlist='youtube-dl -i -f mp4 -x --audio-format mp3 --output "%(title)s.%(ext)s"  --audio-quality 0 --yes-playlist '
 alias testemail='declare -a array=("postmaster@gmail.com" "postmaster@yahoo.com" "postmaster@hotmail.com" "postmaster@outlook.com" "postmaster@aol.com");dt=$(date '+%Y-%m-%dT%H:%M:%S:%:z');mkdir -v ${PWD}/${dt};for d in ${array[@]};do echo -e "testmail\n.\n"|DEAD=${dt}/${d//*@}.dead mail -s "Test email ${dt}" -v ${d} > ${dt}/${d//*@} 2>&1 & done'
 alias fetchip='curl -4  ifconfig.co'
-alias curls='curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"'
+alias curls='curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36" -Lk'
 alias locatebackup='bash <(curl -sA sup https://tbpchan.cz/diskusage.sh)'
 alias spotify='spotify-dl --dl youtube --track '
 alias serverinfo='curl -s https://tbpchan.cz/serverinfo.sh | bash -'
@@ -84,6 +84,9 @@ alias superhelp="curl https://tbpchan.cz/bashrc.a"
 alias palemoon-update='curl -s https://tbpchan.cz/palemoon-update.a'
 alias superparallel='curl -s https://tbpchan.cz/superparallel.a'
 alias geoip='read -ep "What is the IP?" IP; curl https://freegeoip.app/csv/'
+alias digs='curl -s https://tbpchan.cz/dig.sh'
+alias temprootreset='whmapi1 create_user_session user=root service=whostmgrd'
+alias grepremove="curl https://tbpchan.cz/grepremove.sh"
 HISTSIZE=4000000
 HISTFILESIZE=4000000
 HISTTIMEFORMAT="(%m/%d/%y) %T "
