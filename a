@@ -89,7 +89,7 @@ alias geoip='read -ep "What is the IP?" IP; curl https://freegeoip.app/csv/'
 alias digs='curl -s https://tbpchan.cz/dig.sh'
 alias temprootreset='whmapi1 create_user_session user=root service=whostmgrd'
 alias grepremove="curl https://tbpchan.cz/grepremove.sh"
-alias ssh='ssh -XYC -D 1080'
+alias ssh='ssh -XYC'
 HISTSIZE=4000000
 HISTFILESIZE=4000000
 HISTTIMEFORMAT="(%m/%d/%y) %T "
