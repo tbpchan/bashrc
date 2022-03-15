@@ -40,7 +40,7 @@ alias temps='while [ 1 -lt 2 ]; do clear; date; echo ---------------------------
 alias dirsize='du -hsx .[^.]* * | sort -rh | head -20'
 alias bounceall='for i in $(echo "iptables apf searx sshguard cpanel crond exim dovecot deluge courier-imap courier-authlib pure-ftpd named httpd mysql csf nginx php-fpm openfire openvpn murmur mysql-server tor minidlnad ipfw csf plexmediaserver sonarr radarr inspircd mattermostd" | tr " " "\n"); do service $i restart; done'
 alias bouncephp='/scripts/restartsrv_apache_php_fpm'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python2 -'
 alias youtube='youtube-dl -wx --audio-format mp3 --output "%(title)s.%(ext)s" --audio-quality 0'
 alias youtube-playlist='youtube-dl -i -f mp4 -x --audio-format mp3 --output "%(title)s.%(ext)s"  --audio-quality 0 --yes-playlist '
 alias testemail='declare -a array=("postmaster@gmail.com" "postmaster@yahoo.com" "postmaster@hotmail.com" "postmaster@outlook.com" "postmaster@aol.com");dt=$(date '+%Y-%m-%dT%H:%M:%S:%:z');mkdir -v ${PWD}/${dt};for d in ${array[@]};do echo -e "testmail\n.\n"|DEAD=${dt}/${d//*@}.dead mail -s "Test email ${dt}" -v ${d} > ${dt}/${d//*@} 2>&1 & done'
