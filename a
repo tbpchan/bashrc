@@ -101,7 +101,6 @@ bind '"\e[1;5C": forward-word'
 bind '"\e[1;5D": backward-word'
 export EDITOR="nano"
 export VISUAL="nano"
-PATH=$PATH:/opt/dedrads:/usr/local/cpanel/scripts:/usr/local/cpanel/bin:/opt/tier1adv/bin:/opt/tier2c:/opt/sharedrads:/scripts:~/prog:/usr/local/go/bin;
 neofetch
 #Escape ' in an alias - '"'"'THING'"'"'
 if ((${EUID:-0} || "$(id -u)")); then
