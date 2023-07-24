@@ -47,6 +47,7 @@ alias mvv='rsync -azzvP --progress --stats --remove-source-files'
 alias cp='rsync -azzvP --progress --stats'
 alias fixdbs='mysqlcheck -rA && mysqlcheck -oA'
 alias psg='/bin/ps aux | grep -i'
+alias nvtop='/usr/bin/nvidia-smi'
 alias superhelp="curl -s https://tbpchan.cz/bashrc.a"
 alias geoip='read -ep "What is the IP?" IP; curl "https://api.ipbase.com/json/$IP?apikey=EbkVOCuHu1pEiHpoQz839zz7W1IOe9HWTp9SJ6Wv"'
 alias digs='curl -s https://raw.githubusercontent.com/tbpchan/bashrc/master/digs > /tmp/digs.sh ; chmod u+x /tmp/digs.sh ; /tmp/digs.sh ; rm /tmp/digs.sh'
