@@ -46,6 +46,7 @@ alias netstat-count="netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut
 alias mvv='rsync -azzvP --progress --stats --remove-source-files'
 alias cp='rsync -azzvP --progress --stats'
 alias fixdbs='mysqlcheck -rA && mysqlcheck -oA'
+alias youtube-music='cd /mnt/OKB-SSD1/OtakuNoStuff/MUSIC/ ; yt-dlp --cookies /root/cookies.txt -x --audio-format mp3 --no-keep-video '
 alias psg='/bin/ps aux | grep -i'
 alias nvtop='watch /usr/bin/nvidia-smi'
 alias superhelp="curl -s https://tbpchan.cz/bashrc.a"
