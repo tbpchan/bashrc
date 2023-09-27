@@ -53,6 +53,7 @@ alias superhelp="curl -s https://tbpchan.cz/bashrc.a"
 alias geoip='read -ep "What is the IP?" IP; curl "https://api.ipbase.com/json/$IP?apikey=EbkVOCuHu1pEiHpoQz839zz7W1IOe9HWTp9SJ6Wv"'
 alias digs='curl -s https://raw.githubusercontent.com/tbpchan/bashrc/master/digs > /tmp/digs.sh ; chmod u+x /tmp/digs.sh ; /tmp/digs.sh ; rm /tmp/digs.sh'
 alias ssh='ssh -XYC -o ServerAliveInterval=60'
+alias nohistory='unset HISTFILE'
 HISTSIZE=4000000
 HISTFILESIZE=4000000
 HISTTIMEFORMAT="(%m/%d/%y) %T "
