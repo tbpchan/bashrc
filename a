@@ -64,7 +64,6 @@ bind '"\e[1;5C": forward-word'
 bind '"\e[1;5D": backward-word'
 export EDITOR="nano"
 export VISUAL="nano"
-neofetch
 #Escape ' in an alias - '"'"'THING'"'"'
 if ((${EUID:-0} || "$(id -u)")); then
                 PS1="\n\[\e[30;1m\](\[\e[94;1m\]\u\[\e[90;1m\]@\[\e[31;1m\]\h\[\e[30;1m\])->\n\[\e[30;1m\](\[\e[33;1m\]\w\[\e[30;1m\]):す \[\e[32;0m\]"
