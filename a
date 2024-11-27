@@ -33,7 +33,7 @@ unset use_color safe_term match_lhs
 alias ll='ls -lahG'
 alias la='ls -AG'
 alias l='ls -CFG'
-alias temp='sensors |grep ° |awk '"'"'{print $1,$2}'"'"' |grep °'
+alias temp='sensors |grep ° |awk '"'"'{print $1,$2}'"'"' |grep ° ; arcconf getconfig 1 | grep Temperature |head -1 |awk '"'"'{print $3,$4,$7}'"'"''
 alias dirsize='du -hsx .[^.]* * | sort -rh | head -20'
 alias bounceall='for i in $(echo "iptables apf searx sshguard cpanel crond exim dovecot deluge courier-imap courier-authlib pure-ftpd named httpd mysql csf nginx php-fpm openfire openvpn murmur mysql-server tor minidlnad ipfw csf plexmediaserver sonarr radarr inspircd mattermostd" | tr " " "\n"); do service $i restart; done'
 alias speedtest.py='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python2 -'
