@@ -49,6 +49,7 @@ alias fixdbs='mysqlcheck -rA && mysqlcheck -oA'
 alias youtube-music='yt-dlp --cookies /root/cookies.txt -x --audio-format mp3 --no-keep-video '
 alias psg='/bin/ps aux | grep -i'
 alias nvtop='watch /usr/bin/nvidia-smi'
+alias crontab="crontab -i"
 alias superhelp="curl -s https://tbpchan.cz/bashrc.a"
 alias geoip='read -ep "What is the IP?" IP; curl "https://api.ipbase.com/json/$IP?apikey=EbkVOCuHu1pEiHpoQz839zz7W1IOe9HWTp9SJ6Wv"'
 alias digs='curl -s https://raw.githubusercontent.com/tbpchan/bashrc/master/digs > /tmp/digs.sh ; chmod u+x /tmp/digs.sh ; /tmp/digs.sh ; rm /tmp/digs.sh'
