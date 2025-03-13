@@ -37,8 +37,8 @@ alias temp='sensors |grep ° |awk '"'"'{print $1,$2}'"'"' |grep ° ; arcconf get
 alias dirsize='du -hsx .[^.]* * 2>/dev/null | sort -rh | head -20'
 alias bounceall='for i in $(echo "iptables apf searx sshguard cpanel crond exim dovecot deluge courier-imap courier-authlib pure-ftpd named httpd mysql csf nginx php-fpm openfire openvpn murmur mysql-server tor minidlnad ipfw csf plexmediaserver sonarr radarr inspircd mattermostd" | tr " " "\n"); do service $i restart; done'
 alias speedtest.py='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python2 -'
-alias fetchip='curl -4 ifconfig.co'
-alias fetchip6='curl -6 ifconfig.co'
+alias fetchip='curl -s -4 ifconfig.co; curl -s "https://api.ipbase.com/json/$(curl -s ifconfig.co)?apikey=EbkVOCuHu1pEiHpoQz839zz7W1IOe9HWTp9SJ6Wv" | jq ".country_name, .region_name"'
+alias fetchip6='curl -s -6 ifconfig.co; curl -s "https://api.ipbase.com/json/$(curl -s -6 ifconfig.co)?apikey=EbkVOCuHu1pEiHpoQz839zz7W1IOe9HWTp9SJ6Wv" | jq ".country_name, .region_name"'
 alias iftop='/usr/local/bin/bwm-ng'
 alias curls='curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36" -Lk'
 alias netstat-count="netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head"
