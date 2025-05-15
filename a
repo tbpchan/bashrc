@@ -64,6 +64,7 @@ bind '"\e[4~": end-of-line'
 bind '"\e[3~": delete-char'
 bind '"\e[1;5C": forward-word'
 bind '"\e[1;5D": backward-word'
+bind '"\C-d": kill-word'
 export EDITOR="nano"
 export VISUAL="nano"
 #Escape ' in an alias - '"'"'THING'"'"'
